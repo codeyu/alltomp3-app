@@ -9,7 +9,7 @@ const ncp = require('ncp');
 const request = require('request');
 const alltomp3 = require('alltomp3');
 const VERSION = app.getVersion();
-const DEV = true;
+const DEV = (process.env.ELECTRON_ENV === 'development');
 
 // autoUpdater
 if (!DEV && os.platform() != 'linux') {

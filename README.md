@@ -11,9 +11,9 @@ If you encounter any problem, try to add an exception for AllToMP3 or to deactiv
 ## For developers
 ### Installation
 Install the following requirements:
-- Node 9 + NPM (or yarn);
+- Node 10 + NPM (or yarn);
 - Electron 1.8.2 (you must be able to execute the command `electron`);
-- [angular-cli](https://github.com/angular/angular-cli) (you must be able to execute the command `ng`).
+- `npm install -g @angular/cli@1.0.0`.
 
 On Linux you will need [AllToMP3 requirements](https://github.com/AllToMP3/alltomp3#requirements) (ffmpeg, fpcalc, python)
 
@@ -27,10 +27,9 @@ npm install
 
 ### Launching the app
 Go in the `app/` folder and execute `ng serve`.
-Then, in another terminal, in the main folder execute `electron .` (it allows hot-reload of the Angular part).
+Then, in another terminal, in the main folder execute `npm start` (it allows hot-reload of the Angular part).
 
 ### Building the app
-In the `main.js` file, you must set the variable `DEV` (around line 12) to `false`, to deactivate the web inspector and turn on auto-updates.
 ```
 cd app/
 ./build.sh

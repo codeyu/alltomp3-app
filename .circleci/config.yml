@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build-linux:
+    docker:
+      - image: circleci/node:9
+
+    # working_directory: ~/repo
+    environment:
+      ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true
+      ALLTOMP3_DEV: '0'
+
+    steps:
+      - checkout
+      - run: sudo gem install package_cloud
+      - run: sudo npm install -g @angular/cli@1.0.0
+      - run: cd app && npm install && ./build.sh
+      - run: npm install
+      - run: node .circleci/build.js linux
+      - run: npm run dist
+      - run: node .circleci/build.js linux_old
+      - run: npm run dist
+      - run: node .circleci/build.js linux_end
+      - run: sudo gdebi dist/*_new.deb
+      - run: sudo gdebi dist/*_old.deb
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-linux
